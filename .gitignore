@@ -1,0 +1,24 @@
+# build output
+target/
+*.class
+
+# ide stuff
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+*~
+
+# maven generated
+dependency-reduced-pom.xml
+
+# os junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# config (has api keys - dont commit this)
+# the app creates it automatically on first run
