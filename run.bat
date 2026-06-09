@@ -1,5 +1,5 @@
 @echo off
-title Anime Waifu Companion
+title WaifuChat
 
 :: check if java is installed
 java -version >nul 2>&1
@@ -12,22 +12,21 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: find the jar - check both possible locations
-set "JAR=%~dp0target\anime-assistant-1.0-SNAPSHOT.jar"
+:: find the jar
+set "JAR=%~dp0WaifuChat.jar"
 if not exist "%JAR%" (
-    set "JAR=%~dp0anime-assistant-1.0-SNAPSHOT.jar"
+    set "JAR=%~dp0target\anime-assistant-1.0-SNAPSHOT.jar"
 )
 if not exist "%JAR%" (
     echo.
     echo  ERROR: Can't find the jar file!
-    echo  Make sure you built the project first with: mvn clean package
-    echo  Or place the jar file next to this bat file.
+    echo  Make sure WaifuChat.jar is in the same folder as this bat file.
     echo.
     pause
     exit /b 1
 )
 
-echo  Starting waifu companion...
+echo  Starting WaifuChat...
 echo.
 java -jar "%JAR%"
 

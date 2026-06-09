@@ -44,8 +44,8 @@ each personality has unique speech patterns, reactions to compliments/insults/fl
 - **Gemini API key** (free) — get one at [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
 
 ### option 1: just run it (no maven needed)
-1. grab the `anime-assistant-1.0-SNAPSHOT.jar` from releases (or build it yourself)
-2. put it in a folder with `run.bat`
+1. download `WaifuChat.zip` from the [latest release](https://github.com/Aaryan2R/WaifuChat/releases/latest)
+2. extract the zip — it has the jar and `run.bat`
 3. double-click `run.bat`
 4. add your API key in Settings
 
