@@ -126,7 +126,7 @@ src/main/java/com/a2r/animeassistant/
 
 ## 📝 license
 
-do whatever you want with it lol. its a college project.
+do whatever you want with it lol.
 
 ---
 
