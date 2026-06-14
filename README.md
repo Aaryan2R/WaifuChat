@@ -126,7 +126,7 @@ src/main/java/com/a2r/animeassistant/
 
 ## 📝 license
 
-do whatever you want with it lol.
+MIT — free to use, modify, and distribute. See [LICENSE](LICENSE) for details.
 
 ---
 
