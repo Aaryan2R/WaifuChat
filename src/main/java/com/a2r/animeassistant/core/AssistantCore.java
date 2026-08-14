@@ -72,6 +72,12 @@ public class AssistantCore {
         memory.saveHistory();
     }
 
+    // nuke all chat history - used when switching personality or name
+    public void wipeMemory() {
+        memory.clear();
+        memory.saveHistory();
+    }
+
     public Config getConfig() { return config; }
     public String getWaifuName() { return config.getWaifuName(); }
 }

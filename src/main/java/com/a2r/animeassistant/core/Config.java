@@ -78,6 +78,8 @@ public class Config {
                 # gyaru     = fashionable, trendy, social butterfly. casual slang
                 # oneesan   = mature, caring, teasing older-sister energy. ara ara~
                 # tomboy    = athletic, blunt, one of the boys. bad with feelings
+                # maid      = devoted servant, formal, calls you master
+                # succubus  = flirty, teasing, charming. class over crass
                 personality=tsundere
 
                 # ======= Custom Waifu Image =======
@@ -135,6 +137,8 @@ public class Config {
                 + "# gyaru     = fashionable, trendy, social butterfly. casual slang\n"
                 + "# oneesan   = mature, caring, teasing older-sister energy. ara ara~\n"
                 + "# tomboy    = athletic, blunt, one of the boys. bad with feelings\n"
+                + "# maid      = devoted servant, formal, calls you master\n"
+                + "# succubus  = flirty, teasing, charming. class over crass\n"
                 + "personality=" + personality + "\n"
                 + "\n"
                 + "# ======= Custom Waifu Image =======\n"

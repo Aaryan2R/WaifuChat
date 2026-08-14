@@ -232,7 +232,7 @@ public class MainWindow extends JFrame {
         worker.execute();
     }
 
-    // settings popup - api key, personality, custom images, etc
+    // settings popup - api key, personality, wipe memory, etc
     private void showSettings() {
         var config = core.getConfig();
 
@@ -242,13 +242,30 @@ public class MainWindow extends JFrame {
         JTextField imgClosedField = new JTextField(config.getWaifuImageClosed(), 25);
         JTextField imgOpenField = new JTextField(config.getWaifuImageOpen(), 25);
 
-        // all 9 personality types
+        // all personality types
         String[] personalities = {
             "tsundere", "yandere", "kuudere", "dandere", "deredere",
-            "kamidere", "gyaru", "oneesan", "tomboy"
+            "kamidere", "gyaru", "oneesan", "tomboy", "maid", "succubus"
         };
         JComboBox<String> personalityBox = new JComboBox<>(personalities);
         personalityBox.setSelectedItem(config.getPersonality());
+
+        // wipe memory button - red so they know its serious
+        JButton wipeBtn = new JButton("Wipe Chat Memory");
+        wipeBtn.setBackground(new Color(220, 50, 50));
+        wipeBtn.setForeground(Color.WHITE);
+        wipeBtn.setFocusPainted(false);
+        wipeBtn.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(this,
+                "This will delete ALL chat history. She won't remember anything.\nAre you sure?",
+                "Wipe Memory", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (confirm == JOptionPane.YES_OPTION) {
+                core.wipeMemory();
+                JOptionPane.showMessageDialog(this,
+                    "Memory wiped! Restart the app for a fresh start.",
+                    "Done", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
         Object[] fields = {
             "API Key:", apiField,
@@ -256,8 +273,14 @@ public class MainWindow extends JFrame {
             "Waifu Name:", waifuField,
             "Personality:", personalityBox,
             "Image - Closed Mouth (optional):", imgClosedField,
-            "Image - Open Mouth (optional):", imgOpenField
+            "Image - Open Mouth (optional):", imgOpenField,
+            " ", wipeBtn
         };
+
+        // remember old values to check if they changed
+        String oldName = config.getUserName();
+        String oldWaifuName = config.getWaifuName();
+        String oldPersonality = config.getPersonality();
 
         int result = JOptionPane.showConfirmDialog(this, fields,
             "Settings", JOptionPane.OK_CANCEL_OPTION);
@@ -271,8 +294,20 @@ public class MainWindow extends JFrame {
             config.setWaifuImageOpen(imgOpenField.getText().trim());
             config.save();
 
-            addBubble("Settings saved! Restart for changes to take effect.",
-                new Color(200, 200, 200), Color.DARK_GRAY, false);
+            // check if they changed name or personality - suggest wiping memory
+            boolean changed = !oldName.equals(config.getUserName())
+                || !oldWaifuName.equals(config.getWaifuName())
+                || !oldPersonality.equals(config.getPersonality());
+
+            if (changed) {
+                addBubble("Settings saved! Restart the app for changes.\n"
+                    + "Tip: you changed name/personality - consider wiping memory "
+                    + "(Settings > Wipe Chat Memory) for the best experience!",
+                    new Color(200, 200, 200), Color.DARK_GRAY, false);
+            } else {
+                addBubble("Settings saved! Restart the app for changes to take effect.",
+                    new Color(200, 200, 200), Color.DARK_GRAY, false);
+            }
         }
     }
 
